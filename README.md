@@ -22,7 +22,7 @@ rails s
 ```
 
 # ドキュメント類の共有リンク
-## カタログ設計書、テーブル定義書、ER図、画面遷移図、チェックリストなど
+## カタログ設計書、テーブル定義書、チェックリストなど
 https://docs.google.com/spreadsheets/d/1tD8-UBNSoiBuu0djIhnoNxQgzm4N_QjG4D0yQCCcgs8/edit#gid=492690124
 
 ## ワイヤーフレーム
