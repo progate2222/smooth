@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Time limit:</strong>
+  <%= @task.time_limit %>
+</p>
+
+<p>
+  <strong>Importance:</strong>
+  <%= @task.importance %>
+</p>
+
+<p>
+  <strong>Completion flag:</strong>
+  <%= @task.completion_flag %>
+</p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= @task.memo %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
