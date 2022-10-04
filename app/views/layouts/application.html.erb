@@ -13,6 +13,7 @@
   <body>
 
     <% if user_signed_in? %>
+      <p><%= current_user.name %>でログインしています</p>
       <%= link_to "タスク投稿", tasks_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
