@@ -24,9 +24,11 @@
         <td><%= task.completion_flag %></td>
         <td><%= task.memo %></td>
         <td><%= task.user.name %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', task %></td>
+        <% if current_user.id == task.user_id or current_user.admin == true %>
+          <td><%= link_to '編集', edit_task_path(task) %></td>
+          <td><%= link_to '削除', task, method: :delete, data: { confirm: '削除してもよろしいですか?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -33,5 +33,8 @@
   <%= @task.user.name %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<% if current_user.id == @task.user_id or current_user.admin == true %>
+  <%= link_to '編集', edit_task_path(@task) %> |
+  <%= link_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
+<% end %>
+<%= link_to '戻る', tasks_path %>
