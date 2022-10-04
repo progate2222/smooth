@@ -6,7 +6,7 @@
 <p>
   <strong>メンバー:</strong><br>
     <% @team_members.each do |member| %>
-      <%= member.name %>
+      <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
 
       <br>
     <% end %>
@@ -18,5 +18,5 @@
     <%= link_to 'チームに加える', team_members_path(team_id: @team.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <br><br>
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'チームの編集', edit_team_path(@team) %> |
+<%= link_to '戻る', teams_path %>
