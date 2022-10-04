@@ -1,9 +1,22 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
+  <strong>チーム名:</strong><br>
   <%= @team.name %>
 </p>
 
+<p>
+  <strong>メンバー:</strong><br>
+    <% @team_members.each do |member| %>
+      <%= member.name %>
+
+      <br>
+    <% end %>
+</p>
+
+  <% if @team_member.present? %>
+    <%= link_to 'チームから外す', team_member_path(id: @team_member.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'チームに加える', team_members_path(team_id: @team.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<br><br>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

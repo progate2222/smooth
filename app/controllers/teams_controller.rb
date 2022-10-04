@@ -8,6 +8,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/1 or /teams/1.json
   def show
+    @team_member = current_user.team_members.find_by(team_id: @team.id)
+    @team_members = @team.team_member_users
   end
 
   # GET /teams/new

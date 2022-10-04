@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :teams
+  resources :team_members, only: [:create, :destroy, :index]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :tasks
