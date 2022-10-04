@@ -7,7 +7,6 @@
   <strong>メンバー:</strong><br>
     <% @team_members.each do |member| %>
       <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
-
       <br>
     <% end %>
 </p>

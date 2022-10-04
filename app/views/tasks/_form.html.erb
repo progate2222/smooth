@@ -12,34 +12,50 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :タイトル %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :詳細 %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :time_limit %>
+    <%= form.label :期日 %>
     <%= form.text_area :time_limit %>
   </div>
 
   <div class="field">
-    <%= form.label :importance %>
+    <%= form.label :重要度 %>
     <%= form.number_field :importance %>
   </div>
 
   <div class="field">
-    <%= form.label :completion_flag %>
+    <%= form.label :完了フラグ %>
     <%= form.check_box :completion_flag %>
   </div>
 
   <div class="field">
-    <%= form.label :memo %>
+    <%= form.label :メモ %>
     <%= form.text_area :memo %>
   </div>
+
+  <%= form.fields_for :requests do |request| %>
+    <h2>申し送り No.<%= request.index+1 %></h2>
+    <%= request.label  :メッセージ %><br>
+    <%= request.text_field :message %>
+    <br>
+    <br>
+    <%= request.label :前任者 %><br>
+    <%= request.text_field :predecessor_id %>
+    <br>
+    <br>
+    <%= request.label :後任者 %><br>
+    <%= request.text_field :successor_id %>
+    <br>
+    <br>
+<% end %>
 
   <div class="actions">
     <%= form.submit %>
