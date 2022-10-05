@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :重要度 %>
-    <%= form.select :importance, [["高", 1], ["中", "2"], ["低", "3"]], include_blank: "選択して下さい"  %>
+    <%= form.select :importance, Task.importances.keys, include_blank: "選択して下さい"  %>
   </div>
 
   <div class="field">
@@ -45,14 +45,11 @@
     <h2>申し送り事項 No.<%= request.index+1 %></h2>
     <%= request.label  :メッセージ %><br>
     <%= request.text_area :message %>
-    <br>
-    <br>
-    <%= request.label :前任者 %><br>
-    <%= request.text_field :predecessor_id %>
+
     <br>
     <br>
     <%= request.label :後任者 %><br>
-    <%= request.text_field :successor_id %>
+    <%= request.collection_select(:successor_id, @users, :id, :name) %>
     <br>
     <br>
 <% end %>

@@ -9,12 +9,14 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    @requests = @task.requests
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
     @task.requests.new
+    @users = User.all
   end
 
   # GET /tasks/1/edit
@@ -24,6 +26,7 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = current_user.tasks.build(task_params)
+    @task.requests.last.predecessor_id = current_user.id
 
     respond_to do |format|
       if @task.save

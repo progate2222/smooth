@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_10_04_091933) do
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.text "time_limit"
+    t.string "time_limit"
     t.integer "importance"
     t.boolean "completion_flag"
     t.text "memo"

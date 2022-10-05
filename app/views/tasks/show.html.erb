@@ -1,36 +1,45 @@
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @task.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>詳細:</strong>
   <%= @task.description %>
 </p>
 
 <p>
-  <strong>Time limit:</strong>
+  <strong>期日:</strong>
   <%= @task.time_limit %>
 </p>
 
 <p>
-  <strong>Importance:</strong>
+  <strong>重要度:</strong>
   <%= @task.importance %>
 </p>
 
 <p>
-  <strong>Completion flag:</strong>
+  <strong>完了フラグ:</strong>
   <%= @task.completion_flag %>
 </p>
 
 <p>
-  <strong>Memo:</strong>
+  <strong>メモ:</strong>
   <%= @task.memo %>
 </p>
 
 <p>
   <strong>投稿者:</strong>
   <%= @task.user.name %>
+</p>
+
+<p>
+  <strong>申し送り履歴:</strong><br>
+    <% @requests.each do |request| %>
+      メッセージ:<%= request.message %><br>
+      前任者:<%= request.task.user.name %><br>
+      後任者:<%= request.successor_id %><br>
+    <% end %>
 </p>
 
 <% if current_user.id == @task.user_id or current_user.admin == true %>
