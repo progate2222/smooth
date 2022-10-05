@@ -23,12 +23,12 @@
 
   <div class="field">
     <%= form.label :期日 %>
-    <%= form.text_area :time_limit %>
+    <%= form.datetime_field :time_limit %>
   </div>
 
   <div class="field">
     <%= form.label :重要度 %>
-    <%= form.number_field :importance %>
+    <%= form.select :importance, [["高", 1], ["中", "2"], ["低", "3"]], include_blank: "選択して下さい"  %>
   </div>
 
   <div class="field">
@@ -42,9 +42,9 @@
   </div>
 
   <%= form.fields_for :requests do |request| %>
-    <h2>申し送り No.<%= request.index+1 %></h2>
+    <h2>申し送り事項 No.<%= request.index+1 %></h2>
     <%= request.label  :メッセージ %><br>
-    <%= request.text_field :message %>
+    <%= request.text_area :message %>
     <br>
     <br>
     <%= request.label :前任者 %><br>
