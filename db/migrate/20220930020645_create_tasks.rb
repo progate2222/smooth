@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
     create_table :tasks do |t|
       t.string :title
       t.text :description
-      t.string :time_limit
+      t.datetime :time_limit
       t.integer :importance
       t.boolean :completion_flag
       t.text :memo

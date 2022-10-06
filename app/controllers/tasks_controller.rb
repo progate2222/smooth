@@ -17,16 +17,23 @@ class TasksController < ApplicationController
     @task = Task.new
     @task.requests.new
     @users = User.all
+    @teams = Team.all
   end
 
   # GET /tasks/1/edit
   def edit
+    @users = User.all
+    @teams = Team.all
+    @requests = @task.requests
+    @task.requests.build
   end
 
   # POST /tasks or /tasks.json
   def create
     @task = current_user.tasks.build(task_params)
-    @task.requests.last.predecessor_id = current_user.id
+    if @task.requests.count > 0
+      @task.requests.last.predecessor_id = current_user.id
+    end
 
     respond_to do |format|
       if @task.save
@@ -70,7 +77,7 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :description, :time_limit, :importance, :completion_flag, :memo,
+      params.require(:task).permit(:title, :description, :time_limit, :importance, :completion_flag, :memo, :team_id,
                                                     requests_attributes: [:id, :message, :predecessor_id, :successor_id])
     end
 end

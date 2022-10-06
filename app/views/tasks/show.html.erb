@@ -29,6 +29,11 @@
 </p>
 
 <p>
+  <strong>チーム:</strong>
+  <%= @task.team.name %>
+</p>
+
+<p>
   <strong>投稿者:</strong>
   <%= @task.user.name %>
 </p>
@@ -37,8 +42,8 @@
   <strong>申し送り履歴:</strong><br>
     <% @requests.each do |request| %>
       メッセージ:<%= request.message %><br>
-      前任者:<%= request.task.user.name %><br>
-      後任者:<%= request.successor_id %><br>
+      前任者:<%= User.find(request.predecessor_id).name %><br>
+      後任者:<%= User.find(request.successor_id).name %><br>
     <% end %>
 </p>
 

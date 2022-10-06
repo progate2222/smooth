@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :期日 %>
-    <%= form.datetime_field :time_limit %>
+    <%= form.datetime_field :time_limit  %>
   </div>
 
   <div class="field">
@@ -31,9 +31,9 @@
     <%= form.select :importance, Task.importances.keys, include_blank: "選択して下さい"  %>
   </div>
 
-  <div class="field">
-    <%= form.label :完了フラグ %>
-    <%= form.check_box :completion_flag %>
+    <div class="field">
+    <%= form.label :チーム %>
+    <%= form.collection_select(:team_id, @teams, :id, :name)  %>
   </div>
 
   <div class="field">
@@ -41,15 +41,20 @@
     <%= form.text_area :memo %>
   </div>
 
+    <div class="actions">
+    <%= form.submit %>
+  </div>
+  <br>
   <%= form.fields_for :requests do |request| %>
-    <h2>申し送り事項 No.<%= request.index+1 %></h2>
-    <%= request.label  :メッセージ %><br>
+    <h2>申し送りする （<%= request.index+1 %>回目）</h2>
+    <%= request.label  :メッセージ %>
     <%= request.text_area :message %>
+    <%# <% predecessor = [] %>
+    <%# <% predecessor.push(current_user) %>
+    <%# <% request.collection_select(:predecessor_id, predecessor, :id, :name) %>
 
-    <br>
-    <br>
-    <%= request.label :後任者 %><br>
-    <%= request.collection_select(:successor_id, @users, :id, :name) %>
+    <%= request.label :後任者 %>
+    <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
     <br>
     <br>
 <% end %>
@@ -57,4 +62,5 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+  <br>
 <% end %>

@@ -11,6 +11,14 @@
     <% end %>
 </p>
 
+<p>
+  <strong>チームのタスク:</strong><br>
+    <% @team_members.each do |member| %>
+      <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
+      <br>
+    <% end %>
+</p>
+
   <% if @team_member.present? %>
     <%= link_to 'チームから外す', team_member_path(id: @team_member.id), method: :delete, class: 'btn btn-danger' %>
   <% else %>
