@@ -17,12 +17,13 @@ ActiveRecord::Schema.define(version: 2022_10_06_065909) do
 
   create_table "requests", force: :cascade do |t|
     t.text "message"
-    t.bigint "predecessor_id"
     t.bigint "successor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
     t.index ["task_id"], name: "index_requests_on_task_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 2022_10_06_065909) do
   end
 
   add_foreign_key "requests", "tasks"
+  add_foreign_key "requests", "users"
   add_foreign_key "tasks", "teams"
   add_foreign_key "tasks", "users"
   add_foreign_key "team_members", "teams"

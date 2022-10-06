@@ -10,7 +10,7 @@
 
 <p>
   <strong>期日:</strong>
-  <%= @task.time_limit %>
+  <%= l @task.time_limit %>
 </p>
 
 <p>
@@ -38,17 +38,19 @@
   <%= @task.user.name %>
 </p>
 
-<p>
-  <strong>申し送り履歴:</strong><br>
-    <% @requests.each do |request| %>
-      メッセージ:<%= request.message %><br>
-      前任者:<%= User.find(request.predecessor_id).name %><br>
-      後任者:<%= User.find(request.successor_id).name %><br>
-    <% end %>
-</p>
+<% if @task.requests.count > 0 %>
+  <p>
+    <strong>申し送り履歴:</strong><br>
+      <% @requests.each do |request| %>
+        メッセージ:<%= request.message %><br>
+        前任者:<%= User.find(request.user_id).name %><br>
+        後任者:<%= User.find(request.successor_id).name %><br>
+      <% end %>
+  </p>
+<% end %>
 
 <% if current_user.id == @task.user_id or current_user.admin == true %>
   <%= link_to '編集', edit_task_path(@task) %> |
   <%= link_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
 <% end %>
-<%= link_to '戻る', tasks_path %>
+<%= button_to "戻る", {controller: "tasks", action: "index"}, {method: :get, class:"btn" } %>

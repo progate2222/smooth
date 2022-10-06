@@ -49,10 +49,6 @@
     <h2>申し送りする （<%= request.index+1 %>回目）</h2>
     <%= request.label  :メッセージ %>
     <%= request.text_area :message %>
-    <%# <% predecessor = [] %>
-    <%# <% predecessor.push(current_user) %>
-    <%# <% request.collection_select(:predecessor_id, predecessor, :id, :name) %>
-
     <%= request.label :後任者 %>
     <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
     <br>

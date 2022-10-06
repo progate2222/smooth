@@ -1,6 +1,5 @@
-<h1>Editing Team</h1>
+<h1>チーム編集</h1>
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Show', @team %> | <%= button_to "チーム一覧", teams_path, class:"btn"  %>

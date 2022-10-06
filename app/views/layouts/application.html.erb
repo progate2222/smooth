@@ -12,25 +12,15 @@
   </head>
 
   <header>
-      <%= image_tag 'favicon.png', class:"img logo-img" %>
+      <%= image_tag 'logo.png', class:"img logo-img" %>
       <% if user_signed_in? %>
         <%= button_to "タスク登録", {controller: "tasks", action: "new"}, {method: :get, class:"btn btn-header" } %>
-        <%= link_to (tasks_path) do %>
-          <button class="btn btn-header">タスク一覧</button>
-        <% end %>
-        <%= link_to (users_show_path(id: current_user.id)) do %>
-          <button class="btn btn-header">マイページ</button>
-        <% end %>
-        <%= link_to (destroy_user_session_path), method: :delete do %>
-          <button class="btn btn-header">ログアウト</button>
-        <% end %>
+        <%= button_to "タスク一覧", {controller: "tasks", action: "index"}, {method: :get, class:"btn btn-header" } %>
+        <%= button_to "マイページ", users_show_path(id: current_user.id), {method: :get, class:"btn btn-header" } %>
+        <%= button_to "ログアウト", destroy_user_session_path, {method: :delete, class:"btn btn-header" } %>
       <% else %>
-        <%= link_to (new_user_registration_path) do %>
-          <button class="btn btn-header">新規登録</button>
-        <% end %>
-        <%= link_to (new_user_session_path) do %>
-          <button class="btn btn-header">ログイン</button>
-        <% end %>
+        <%= button_to "新規登録", new_user_registration_path, {method: :get, class:"btn btn-header" } %>
+        <%= button_to "ログイン", new_user_session_path, {method: :get, class:"btn btn-header" } %>
       <% end %>
     </header>
 

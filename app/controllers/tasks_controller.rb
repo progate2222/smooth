@@ -31,10 +31,6 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = current_user.tasks.build(task_params)
-    if @task.requests.count > 0
-      @task.requests.last.predecessor_id = current_user.id
-    end
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
@@ -78,6 +74,6 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:title, :description, :time_limit, :importance, :completion_flag, :memo, :team_id,
-                                                    requests_attributes: [:id, :message, :predecessor_id, :successor_id])
+                                                    requests_attributes: [:id, :message, :user_id, :successor_id])
     end
 end

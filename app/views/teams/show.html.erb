@@ -13,10 +13,12 @@
 
 <p>
   <strong>チームのタスク:</strong><br>
-    <% @team_members.each do |member| %>
-      <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
-      <br>
+    <% @team_tasks.each do |task| %>
+      <% if task.team_id == @team.id%>
+        <%= task.title %><%= link_to '詳細', task_path(id: task.id) %><br>
+      <% end %>
     <% end %>
+    <br>
 </p>
 
   <% if @team_member.present? %>
@@ -26,4 +28,5 @@
   <% end %>
 <br><br>
 <%= link_to 'チームの編集', edit_team_path(@team) %> |
+<%= button_to "戻る", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
 <%= link_to '戻る', teams_path %>

@@ -12,15 +12,15 @@
 
   <tbody>
     <% @tasks.each do |task| %>
-      <tr>
-        <div  class="task">
+      <tr  class="task">
+        <div>
           <td><%= task.title %></td>
-          <td><%= task.time_limit %></td>
+          <td><%= l task.time_limit %></td>
           <td><%= task.importance %></td>
-          <td><%= link_to '詳細', task %></td>
+          <td><%= link_to '詳細', task, class: "btn mini-btn" %></td>
           <% if current_user.id == task.user_id  || current_user.admin == true  %>
-            <td><%= link_to '編集', edit_task_path(task) %></td>
-            <td><%= link_to '削除', task, method: :delete, data: { confirm: '削除してもよろしいですか?' } %></td>
+            <td><%= link_to '編集', edit_task_path(task), class: "btn mini-btn" %></td>
+            <td><%= link_to '削除', task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class: "btn mini-btn" %></td>
           <% end %>
         </div>
       </tr>
@@ -30,4 +30,4 @@
 
 <br>
 
- <%= button_to "タスクを登録する", {controller: "tasks", action: "new"}, {method: :get, class:"btn sign-btn " } %>
+<%= button_to "タスクを登録する", {controller: "tasks", action: "new"}, {method: :get, class:"btn sign-btn " } %>

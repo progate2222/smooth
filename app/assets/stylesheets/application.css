@@ -17,8 +17,15 @@
 /* .task {
     padding-top: 30px;
 } */
+
 .btn {
     cursor: pointer;
+    border-radius: 6px;
+    color: #fff !important;
+    position: relative;
+    background-color: #4dbf80;
+    border: none;
+    padding: 4px 6px;
 }
 
 .btn:hover {
@@ -120,6 +127,10 @@ body {
     background-color: #eee;
 }
 
+button, input, select, textarea, pre, th, td, li, dt, dd {
+    font-family: inherit;
+}
+
 .left {
     text-align: left;
     position: relative;
@@ -163,6 +174,26 @@ header {
 .logo-img {
     margin-right: auto;
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    height: 80px;
+}
+
+td {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.task {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.mini-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    background: rgb(255, 208, 91);
+    color: #fff;
+    border-radius: 5px;
 }
