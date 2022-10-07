@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
   def show
     @team_member = current_user.team_members.find_by(team_id: @team.id)
     @team_members = @team.team_member_users
+    @team_tasks = Task.all
   end
 
   # GET /teams/new

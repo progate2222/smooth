@@ -1,0 +1,65 @@
+<%= form_with(model: task) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :タイトル %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :詳細 %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :期日 %>
+    <%= form.datetime_field :time_limit  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :重要度 %>
+    <%= form.select :importance, Task.importances.keys, include_blank: "選択して下さい"  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :メモ %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :↓完了したらチェック%>
+    <%= form.check_box :completion_flag %>
+  </div>
+
+  <% requests_length=task.requests.length %>
+
+  <%= form.fields_for :requests do |request| %>
+    <% unless request.index+1==requests_length %>
+    <% else %>
+      <h2>申し送り事項 （<%= request.index+1 %>回目）</h2>
+      <%= request.label  :メッセージ %>
+      <%= request.text_area :message %>
+      <br>
+      <br>
+      <% request.text_field(:user_id, :value => current_user.id ) %>
+      <%= request.label :後任者 %>
+      <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
+      <br>
+      <br>
+    <% end %>
+<% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -9,20 +9,32 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    @requests = @task.requests
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
+    @task.requests.new
+    @users = User.all
+    @teams = Team.all
   end
 
   # GET /tasks/1/edit
   def edit
+    @users = User.all
+    @teams = Team.all
+    @task.requests.build
+    # @requests = @task.requests
   end
 
   # POST /tasks or /tasks.json
   def create
+    @task = Task.new(task_params)
+    @teams = Team.all
+    @users = User.all
     @task = current_user.tasks.build(task_params)
+    @task.requests.last.user_id = current_user.id if @task.requests.present?
 
     respond_to do |format|
       if @task.save
@@ -37,8 +49,20 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
+    # binding.irb
+    # @users = User.all
+    # if @task.requests.blank?
+    #   # @task.requests.build
+    #   @task.requests.last.user_id = current_user.id
+    #   # binding.irb
+    # else
+    #   @task.requests.last.user_id = current_user.id
+    #   # binding.irb
+    # end
+
     respond_to do |format|
       if @task.update(task_params)
+        # binding.irb
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -66,6 +90,7 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :description, :time_limit, :importance, :completion_flag, :memo)
+      params.require(:task).permit(:title, :description, :time_limit, :importance, :completion_flag, :memo, :team_id,
+                                                    requests_attributes: [:id, :message, :user_id, :successor_id])
     end
 end

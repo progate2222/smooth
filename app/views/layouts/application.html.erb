@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SmoothApp</title>
+    <title>Smooth</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag('favicon.png') %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
 
-  <body>
+  <header>
+      <%= image_tag 'logo.png', class:"img logo-img" %>
+      <% if user_signed_in? %>
+        <%= button_to "タスク登録", {controller: "tasks", action: "new"}, {method: :get, class:"btn btn-header" } %>
+        <%= button_to "タスク一覧", {controller: "tasks", action: "index"}, {method: :get, class:"btn btn-header" } %>
+        <%= button_to "マイページ", users_show_path(id: current_user.id), {method: :get, class:"btn btn-header" } %>
+        <%= button_to "ログアウト", destroy_user_session_path, {method: :delete, class:"btn btn-header" } %>
+      <% else %>
+        <%= button_to "新規登録", new_user_registration_path, {method: :get, class:"btn btn-header" } %>
+        <%= button_to "ログイン", new_user_session_path, {method: :get, class:"btn btn-header" } %>
+      <% end %>
+    </header>
 
+  <body>
     <% if user_signed_in? %>
-      <p><%= current_user.name %>でログインしています</p>
-      <%= link_to "タスク投稿", tasks_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
+      <p class="right"><%= current_user.name %>でログインしています</p>
     <% end %>
 
     <% if notice %>

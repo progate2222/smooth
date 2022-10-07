@@ -1,6 +1,7 @@
-<h1>Editing Task</h1>
+<div class="main-content">
+    <h1>タスクを編集する</h1>
 
-<%= render 'form', task: @task %>
+    <%= render 'form_edit', task: @task %>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+    <%= link_to '詳細', @task %>
+</div>
