@@ -51,6 +51,7 @@
     <%= request.text_area :message %>
     <%= request.label :後任者 %>
     <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
+    <%# <% form.hidden_field :user_id, :value => current_user.id %>
     <br>
     <br>
 <% end %>

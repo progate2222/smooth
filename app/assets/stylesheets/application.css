@@ -17,6 +17,10 @@
 /* .task {
     padding-top: 30px;
 } */
+.btn-cover {
+    display: flex;
+    margin-top: 30px;
+}
 
 .btn {
     cursor: pointer;
@@ -33,6 +37,7 @@
 .btn:hover {
 	opacity: 0.7;
 }
+
 .sign-btn {
     color: #fff !important;
     font-size: 20px;
@@ -83,6 +88,35 @@
     margin-top: 40px;
     margin-bottom: 40px;
     position: relative;
+}
+
+.btn-header {
+    position: relative;
+    /* display: block; */
+    min-width: 120px;
+    min-height: 36px;
+    line-height: 36px;
+    margin-top: 22px;
+    text-align: center;
+    font-size: 0.8rem;
+    background: rgba(255,255,255,0.1);
+    margin-left: 10px;
+    color: #fff;
+    border: none;
+}
+
+.admin-btn {
+    background-color: #f85050;
+}
+
+.mini-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    background: rgb(255, 214, 91);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 10px;
 }
 
 .form {
@@ -169,29 +203,23 @@ header {
     margin-top: 0;
 }
 
-.btn-header {
-    position: relative;
-    /* display: block; */
-    min-width: 120px;
-    min-height: 36px;
-    line-height: 36px;
-    margin-top: 22px;
-    text-align: center;
-    font-size: 0.8rem;
-    background: rgba(255,255,255,0.1);
-    margin-left: 10px;
-    color: #fff;
-    border: none;
-}
-
-.admin-btn {
-    background-color: #f85050;
-}
-
 .logo-img {
     margin-right: auto;
     position: relative;
     height: 80px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+table, th, td {
+    border: none;
+}
+
+th {
+    margin-top: 25px;
 }
 
 td {
@@ -201,17 +229,46 @@ td {
     border: 10px;
 }
 
-/* tr.task {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
+td.completion {
+    background-color: #fa6257;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+td.done {
+    background-color: #999999;
+}
+
+tr {
+    margin: 10px;
+}
+
+.font {
+    font-weight: bold;
+}
+
+.done {
+    color: #fa6257;
+}
+
+.Incomplete {
+    color: #999999;
+}
+
+/* .high {
+    color: #fb2727db;
 } */
 
-.mini-btn {
-    display: inline-block;
-    padding: 8px 12px;
-    text-decoration: none;
-    background: rgb(255, 208, 91);
-    color: #fff;
-    border-radius: 5px;
+.normal {
+    /* color: #219138; */
+    opacity: 0.7;
+}
+
+.low {
+    /* color: #0058a0df; */
+    opacity: 0.4;
 }

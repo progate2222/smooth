@@ -24,18 +24,17 @@ class TasksController < ApplicationController
   def edit
     @users = User.all
     @teams = Team.all
-    @requests = @task.requests
     @task.requests.build
+    # @requests = @task.requests
   end
 
   # POST /tasks or /tasks.json
   def create
+    @task = Task.new(task_params)
     @teams = Team.all
     @users = User.all
     @task = current_user.tasks.build(task_params)
     @task.requests.last.user_id = current_user.id if @task.requests.present?
-    # binding.irb
-    # @request = current_user.requests.build(task_params)
 
     respond_to do |format|
       if @task.save
@@ -50,11 +49,20 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    @users = User.all
-    @task.requests.last.user_id = current_user.id if @task.requests.present?
-    binding.irb
+    # binding.irb
+    # @users = User.all
+    # if @task.requests.blank?
+    #   # @task.requests.build
+    #   @task.requests.last.user_id = current_user.id
+    #   # binding.irb
+    # else
+    #   @task.requests.last.user_id = current_user.id
+    #   # binding.irb
+    # end
+
     respond_to do |format|
       if @task.update(task_params)
+        # binding.irb
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else

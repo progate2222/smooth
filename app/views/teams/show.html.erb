@@ -1,37 +1,53 @@
 <div class="main-content">
 
-  <h1>チーム詳細</h1><br>
+  <h1><%= @team.name %> 詳細</h1><br>
 
-  <p>
-    <strong>チーム名:</strong><br>
-    <%= @team.name %>
-  </p>
-
-  <p>
-    <strong>メンバー:</strong><br>
+<table>
+  <thead>
+    <tr>
+      <th>メンバー</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
       <% @team_members.each do |member| %>
-        <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
-        <br>
+        <tr>
+          <td><%= member.name %></td>
+          <td><%= button_to '詳細', users_show_path(id: member.id),method: :get, class: "btn mini-btn" %></td>
+        </tr>
       <% end %>
-  </p>
+  </tbody>
+</table>
 
-  <p>
-    <strong>チームのタスク:</strong><br>
-      <% @team_tasks.each do |task| %>
-        <% if task.team_id == @team.id%>
-          <%= task.title %>  <%= link_to '詳細', task_path(id: task.id) %><br>
-        <% end %>
-      <% end %>
-      <br>
+<table>
+  <thead>
+    <tr>
+      <th>チームのタスク</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @team_tasks.each do |task| %>
+      <tr>
+          <% if task.team_id == @team.id%>
+            <td><%= task.title %></td>
+            <td><%= button_to '詳細', task_path(id: task.id),method: :get, class: "btn mini-btn"  %></td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
   </p>
 
     <% if @team_member.present? %>
-      <%= link_to 'チームから外れる', team_member_path(id: @team_member.id), method: :delete, class: 'btn btn-danger' %>
+      <%= link_to 'チームから外れる', team_member_path(id: @team_member.id), method: :delete, class: 'btn sign-btn' %>
     <% else %>
       <%= link_to 'チームに加わる', team_members_path(team_id: @team.id), method: :post, class: 'btn btn-primary' %>
     <% end %>
   <br><br>
-  <%= button_to 'チームの編集', edit_team_path(@team), {method: :get, class:"btn" } %>
-  <%= button_to "戻る", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
+  <div class="btn-cover">
+    <%= button_to 'チームの編集', edit_team_path(@team), {method: :get, class:"btn" } %>
+    <%= button_to "戻る", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
+  </div>
 </div>
 

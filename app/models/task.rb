@@ -3,6 +3,10 @@ class Task < ApplicationRecord
     belongs_to :user
     belongs_to :team
     has_many :requests, dependent: :destroy
-    accepts_nested_attributes_for :requests, allow_destroy: true, reject_if: :all_blank
+    accepts_nested_attributes_for :requests, allow_destroy: true, reject_if: :successor_blank
+
+    def successor_blank(attributes)
+        attributes[:successor_id].blank?
+    end
 
 end

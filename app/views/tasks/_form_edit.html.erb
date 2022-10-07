@@ -37,20 +37,26 @@
   </div>
 
   <div class="field">
-    <%= form.label :完了フラグ %>
+    <%= form.label :↓完了したらチェック%>
     <%= form.check_box :completion_flag %>
   </div>
 
+  <% requests_length=task.requests.length %>
+
   <%= form.fields_for :requests do |request| %>
-    <h2>申し送り事項 No.<%= request.index+1 %></h2>
-    <%= request.label  :メッセージ %>
-    <%= request.text_area :message %>
-    <br>
-    <br>
-    <%= request.label :後任者 %>
-    <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
-    <br>
-    <br>
+    <% unless request.index+1==requests_length %>
+    <% else %>
+      <h2>申し送り事項 （<%= request.index+1 %>回目）</h2>
+      <%= request.label  :メッセージ %>
+      <%= request.text_area :message %>
+      <br>
+      <br>
+      <% request.text_field(:user_id, :value => current_user.id ) %>
+      <%= request.label :後任者 %>
+      <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
+      <br>
+      <br>
+    <% end %>
 <% end %>
 
   <div class="actions">
