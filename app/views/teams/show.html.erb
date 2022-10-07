@@ -1,32 +1,37 @@
-<p>
-  <strong>チーム名:</strong><br>
-  <%= @team.name %>
-</p>
+<div class="main-content">
 
-<p>
-  <strong>メンバー:</strong><br>
-    <% @team_members.each do |member| %>
-      <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
-      <br>
-    <% end %>
-</p>
+  <h1>チーム詳細</h1><br>
 
-<p>
-  <strong>チームのタスク:</strong><br>
-    <% @team_tasks.each do |task| %>
-      <% if task.team_id == @team.id%>
-        <%= task.title %><%= link_to '詳細', task_path(id: task.id) %><br>
+  <p>
+    <strong>チーム名:</strong><br>
+    <%= @team.name %>
+  </p>
+
+  <p>
+    <strong>メンバー:</strong><br>
+      <% @team_members.each do |member| %>
+        <%= member.name %>  <%= link_to '詳細', users_show_path(id: member.id) %>
+        <br>
       <% end %>
-    <% end %>
-    <br>
-</p>
+  </p>
 
-  <% if @team_member.present? %>
-    <%= link_to 'チームから外す', team_member_path(id: @team_member.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'チームに加える', team_members_path(team_id: @team.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<br><br>
-<%= link_to 'チームの編集', edit_team_path(@team) %> |
-<%= button_to "戻る", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
-<%= link_to '戻る', teams_path %>
+  <p>
+    <strong>チームのタスク:</strong><br>
+      <% @team_tasks.each do |task| %>
+        <% if task.team_id == @team.id%>
+          <%= task.title %>  <%= link_to '詳細', task_path(id: task.id) %><br>
+        <% end %>
+      <% end %>
+      <br>
+  </p>
+
+    <% if @team_member.present? %>
+      <%= link_to 'チームから外れる', team_member_path(id: @team_member.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'チームに加わる', team_members_path(team_id: @team.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <br><br>
+  <%= button_to 'チームの編集', edit_team_path(@team), {method: :get, class:"btn" } %>
+  <%= button_to "戻る", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
+</div>
+

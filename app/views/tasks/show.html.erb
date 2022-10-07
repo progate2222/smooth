@@ -1,56 +1,61 @@
-<p>
-  <strong>タイトル:</strong>
-  <%= @task.title %>
-</p>
+<div class="main-content">
 
-<p>
-  <strong>詳細:</strong>
-  <%= @task.description %>
-</p>
+<h1>タスク詳細</h1><br>
 
-<p>
-  <strong>期日:</strong>
-  <%= l @task.time_limit %>
-</p>
-
-<p>
-  <strong>重要度:</strong>
-  <%= @task.importance %>
-</p>
-
-<p>
-  <strong>完了フラグ:</strong>
-  <%= @task.completion_flag %>
-</p>
-
-<p>
-  <strong>メモ:</strong>
-  <%= @task.memo %>
-</p>
-
-<p>
-  <strong>チーム:</strong>
-  <%= @task.team.name %>
-</p>
-
-<p>
-  <strong>投稿者:</strong>
-  <%= @task.user.name %>
-</p>
-
-<% if @task.requests.count > 0 %>
   <p>
-    <strong>申し送り履歴:</strong><br>
-      <% @requests.each do |request| %>
-        メッセージ:<%= request.message %><br>
-        前任者:<%= User.find(request.user_id).name %><br>
-        後任者:<%= User.find(request.successor_id).name %><br>
-      <% end %>
+    <strong>タイトル:</strong>
+    <%= @task.title %>
   </p>
-<% end %>
 
-<% if current_user.id == @task.user_id or current_user.admin == true %>
-  <%= link_to '編集', edit_task_path(@task) %> |
-  <%= link_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
-<% end %>
-<%= button_to "戻る", {controller: "tasks", action: "index"}, {method: :get, class:"btn" } %>
+  <p>
+    <strong>詳細:</strong>
+    <%= @task.description %>
+  </p>
+
+  <p>
+    <strong>期日:</strong>
+    <%= l @task.time_limit %>
+  </p>
+
+  <p>
+    <strong>重要度:</strong>
+    <%= @task.importance %>
+  </p>
+
+  <p>
+    <strong>完了フラグ:</strong>
+    <%= @task.completion_flag %>
+  </p>
+
+  <p>
+    <strong>メモ:</strong>
+    <%= @task.memo %>
+  </p>
+
+  <p>
+    <strong>チーム:</strong>
+    <%= @task.team.name %>
+  </p>
+
+  <p>
+    <strong>投稿者:</strong>
+    <%= @task.user.name %>
+  </p>
+
+  <% if @task.requests.count > 0 %>
+    <p>
+      <strong>申し送り履歴:</strong><br>
+        <% @requests.each do |request| %>
+          メッセージ:<%= request.message %><br>
+          前任者:<%= User.find(request.user_id).name %><br>
+          後任者:<%= User.find(request.successor_id).name %><br>
+        <% end %>
+    </p>
+  <% end %>
+
+  <% if current_user.id == @task.user_id or current_user.admin == true %>
+    <%= button_to '編集', edit_task_path(@task), {method: :get, class:"btn" }%>
+    <%= button_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class:"btn" %>
+  <% end %>
+  <%= button_to "戻る", {controller: "tasks", action: "index"}, {method: :get, class:"btn" } %>
+</div>
