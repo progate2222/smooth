@@ -1,72 +1,81 @@
 <div class="main-content">
 
     <h1><%= @user.name %>のページ</h1>
-    <p>名前 : <%= @user.name %></p>
     <p>メールアドレス : <%= @user.email %></p>
 
     <table>
-    <thead>
-        <tr>
-            <th><h3>所属チーム</h3></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @teams.each do |team| %>
-            <tr>
-                <td><%= team.name %></td>
-                <td><%= button_to '詳細',  team_path(id: team.id),method: :get, class: "btn mini-btn" %></td>
-            </tr>
-        <% end %>
-    </tbody>
-
-
-    <table>
         <thead>
-            <h3><%= @user.name %>のタスク一覧</h3>
             <tr>
-                <th></th>
-                <th>タイトル</th>
-                <th>チーム</th>
-                <th>期日</th>
-                <th>重要度</th>
-                <th colspan="3"></th>
+                <th><h3>所属チーム</h3></th>
             </tr>
         </thead>
-
-    <tbody>
-        <% @tasks.each do |task| %>
-            <%if (task.user.id == @user.id) && (task.requests.length == 0 ) %>
-            <tr  class="task">
-                <div>
-                <% if task.completion_flag == true %>
-                    <td class="completion done" >完　了</td>
-                <% else %>
-                    <td class="completion">未完了</td>
-                <% end %>
-                <td><%= task.title %></td>
-                <td><%= task.team.name %></td>
-                <td><%= l task.time_limit %></td>
-                <td>
-                    <% if task.importance == "高" %>
-                        <span class="font high">
-                    <% elsif task.importance == "中" %>
-                        <span class="font normal">
-                    <% else %>
-                        <span class="font low">
-                    <% end %>
-                    <%= task.importance %>
-                    </span>
-                </td>
-                <td><%= button_to '詳細', task, method: :get, class: "btn mini-btn" %></td>
-                <% if ( current_user.id == task.user_id )  || ( current_user.admin == true )  %>
-                    <td><%= button_to '編集', edit_task_path(task), method: :get, class: "btn mini-btn" %></td>
-                    <td><%= button_to '削除', task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class: "btn mini-btn" %></td>
-                <% end %>
-                </div>
-            </tr>
+        <tbody>
+            <% @teams.each do |team| %>
+                <tr>
+                    <td><%= team.name %></td>
+                    <td><%= button_to '詳細',  team_path(id: team.id),method: :get, class: "btn mini-btn" %></td>
+                </tr>
             <% end %>
-        <% end %>
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
+    <% if @user.tasks.length==0%>
+    <% else %>
+        <table>
+            <thead>
+                <h3><%= @user.name %>のタスク一覧</h3>
+                <tr>
+                    <th></th>
+                    <th>タイトル</th>
+                    <th>チーム</th>
+                    <th>期日</th>
+                    <th>重要度</th>
+                    <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @tasks.each do |task| %>
+                    <%if ((task.user.id == @user.id) && (task.requests.length == 0 ))  || (task.requests.last&.successor_id == @user.id)%>
+                    <tr  class="task">
+                        <div>
+                        <% if task.completion_flag == true %>
+                            <td class="completion done" >完　了</td>
+                        <% else %>
+                            <td class="completion">未完了</td>
+                        <% end %>
+                        <td><%= task.title %></td>
+                        <td><%= task.team.name %></td>
+                        <td><%= l task.time_limit %></td>
+                        <td>
+                            <% if task.importance == "高" %>
+                                <span class="font high">
+                            <% elsif task.importance == "中" %>
+                                <span class="font normal">
+                            <% else %>
+                                <span class="font low">
+                            <% end %>
+                            <%= task.importance %>
+                            </span>
+                        </td>
+                        <td><%= button_to '詳細', task, method: :get, class: "btn mini-btn" %></td>
+                        <% if ( current_user.id == task.user_id )  || ( current_user.admin == true )  %>
+                            <td><%= button_to '編集', edit_task_path(task), method: :get, class: "btn mini-btn" %></td>
+                            <td><%= button_to '削除', task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class: "btn mini-btn" %></td>
+                        <% end %>
+                        </div>
+                    </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+    <% end %>
+
+    <%if @user.admin == true%>
+    <div class="btn-cover">
+        <%= button_to '管理者ページへ行く', rails_admin_path, method: :get, class: "btn admin-btn" %>
+        <%# <%= button_to "ユーザー新規登録", , {method: :get, class:"btn admin-btn"} %>
+        <%# <%= button_to "チーム新規登録", {controller: "teams", action: "new"}, {method: :get, class:"btn admin-btn " } %>
+    </div>
+    <% end %>
 </div>

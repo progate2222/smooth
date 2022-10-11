@@ -1,5 +1,7 @@
-<h1>チーム登録</h1>
+<div class="main-content">
+    <h1>チーム登録</h1>
 
-<%= render 'form', team: @team %>
-
-<%= link_to 'Back', teams_path %>
+    <%= render 'form', team: @team %>
+    <br>
+    <%= button_to "チーム一覧", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
+</div>

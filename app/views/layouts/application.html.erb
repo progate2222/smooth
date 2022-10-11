@@ -20,7 +20,7 @@
         <%= button_to "マイページ", user_path(current_user.id), {method: :get, class:"btn btn-header" } %>
         <%= button_to "ログアウト", destroy_user_session_path, {method: :delete, class:"btn btn-header" } %>
       <% else %>
-        <%= button_to "新規登録", new_user_registration_path, {method: :get, class:"btn btn-header" } %>
+        <%# <%= button_to "新規登録", new_user_registration_path, {method: :get, class:"btn btn-header" } %>
         <%= button_to "ログイン", new_user_session_path, {method: :get, class:"btn btn-header" } %>
       <% end %>
     </header>

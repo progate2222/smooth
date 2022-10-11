@@ -25,7 +25,6 @@ class TasksController < ApplicationController
     @users = User.all
     @teams = Team.all
     @task.requests.build
-    # @requests = @task.requests
   end
 
   # POST /tasks or /tasks.json
@@ -49,20 +48,8 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    # binding.irb
-    # @users = User.all
-    # if @task.requests.blank?
-    #   # @task.requests.build
-    #   @task.requests.last.user_id = current_user.id
-    #   # binding.irb
-    # else
-    #   @task.requests.last.user_id = current_user.id
-    #   # binding.irb
-    # end
-
-    respond_to do |format|
+      respond_to do |format|
       if @task.update(task_params)
-        # binding.irb
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
