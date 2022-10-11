@@ -1,5 +1,12 @@
 <div class="main-content">
-  <h1><%= @team.name %> 詳細</h1><br>
+
+  <h1><%= @team.name %> 詳細</h1>
+  <%# <% if @team_member.present? %>
+    <%# <%= button_to 'チームから外れる', team_member_path(id: @team_member.id), method: :delete, class: 'btn sign-btn out' %>
+  <%# <% else %>
+    <%# <%= button_to 'チームに加わる', team_members_path(team_id: @team.id), method: :post, class: 'btn sign-btn in' %>
+  <%# <% end %>
+
   <table>
     <thead>
       <tr>
@@ -10,16 +17,13 @@
         <% @team_members.each do |member| %>
           <tr>
             <td><%= member.name %></td>
-            <td><%= button_to '詳細', users_show_path(id: member.id),method: :get, class: "btn mini-btn" %></td>
+            <% if (current_user.admin == true) || (member.id == current_user.id) %>
+              <td><%= button_to '詳細', user_path(member.id),method: :get, class: "btn mini-btn" %></td>
+            <% end %>
           </tr>
         <% end %>
     </tbody>
   </table>
-    <% if @team_member.present? %>
-      <%= button_to 'チームから外れる', team_member_path(id: @team_member.id), method: :delete, class: 'btn sign-btn' %>
-    <% else %>
-      <%= button_to 'チームに加わる', team_members_path(team_id: @team.id), method: :post, class: 'btn sign-btn' %>
-    <% end %>
 
   <table>
     <thead>
@@ -52,8 +56,8 @@
 
   <br><br>
   <div class="btn-cover">
-    <%= button_to 'チームの編集', edit_team_path(@team), {method: :get, class:"btn" } %>
-    <%= button_to "戻る", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
+    <%# <%= button_to 'チームの編集', edit_team_path(@team), {method: :get, class:"btn" } %>
+    <%# <%= button_to "チーム一覧", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
   </div>
 </div>
 

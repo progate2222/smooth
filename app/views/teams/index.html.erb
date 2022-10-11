@@ -4,8 +4,8 @@
 <table>
   <thead>
     <tr>
-      <th>チーム名</th>
-      <th colspan="10"></th>
+      <%# <th>チーム名</th> %>
+      <%# <th colspan="10"></th> %>
     </tr>
   </thead>
 
@@ -14,14 +14,10 @@
       <tr>
         <td><%= team.name %></td>
         <td><%= link_to '詳細', team, class: "btn mini-btn" %></td>
-        <td><%= link_to '編集', edit_team_path(team), class: "btn mini-btn" %></td>
-        <td><%= link_to '削除', team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn mini-btn" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= button_to "チームを登録する", {controller: "teams", action: "new"}, {method: :get, class:"btn sign-btn admin-btn " } %>
 </div>

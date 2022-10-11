@@ -195,6 +195,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rolify (6.0.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -274,6 +275,7 @@ DEPENDENCIES
   rails (~> 6.1.6)
   rails_admin (~> 3.0)
   rexml
+  rolify
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   spring
