@@ -41,11 +41,8 @@
     <%= form.check_box :completion_flag %>
   </div>
 
-  <% requests_length=task.requests.length %>
-
   <%= form.fields_for :requests do |request| %>
-    <% unless request.index+1==requests_length %>
-    <% else %>
+    <% if request.index+1==task.requests.length %>
       <h2>申し送り事項 （<%= request.index+1 %>回目）</h2>
       <%= request.label  :メッセージ %>
       <%= request.text_area :message %>

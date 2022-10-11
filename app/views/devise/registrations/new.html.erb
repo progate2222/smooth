@@ -26,11 +26,13 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form" %>
       </div>
 
+      <div class="center">
       <div class="actions">
         <%= f.submit t('.sign_up'), class: "btn sign-btn admin-btn" %>
       </div>
-    </div>
-  </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+    </div>
+  </div>
