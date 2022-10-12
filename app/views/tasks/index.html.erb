@@ -20,6 +20,8 @@
     <tr>
       <th></th>
       <th>タイトル</th>
+      <th>チーム</th>
+      <th>担当者</th>
       <th><%= sort_link(@q, :time_limit, "期日") %></th>
       <th><%= sort_link(@q, :importance, "重要度") %></th>
       <th colspan="3"></th>
@@ -36,6 +38,14 @@
           <td class="completion">未完了</td>
           <% end %>
           <td><%= task.title %></td>
+          <td><%= task.team.name %></td>
+          <td>
+          <% if task.requests.length >0 %>
+            <%=User.find(task.requests.last.successor_id).name %>
+          <% else %>
+            <%= task.user.name %>
+          <% end %>
+          </td>
           <td><%= l task.time_limit %></td>
           <td>
             <% if task.importance == "高" %>

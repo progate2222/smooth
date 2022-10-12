@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
   def show
     @team_member = current_user.team_members.find_by(team_id: @team.id)
     @team_members = @team.team_member_users
-    @team_tasks = Task.all
+    @team_tasks = Task.all.order(:completion_flag).order(:time_limit)
   end
 
   # GET /teams/new

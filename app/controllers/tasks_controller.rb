@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = @q.result.order(time_limit: "ASC", completion_flag: "DESC")
+    @tasks = @q.result.order(:completion_flag).order(:time_limit)
   end
 
   # GET /tasks/1 or /tasks/1.json
