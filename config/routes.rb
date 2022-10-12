@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
 }
   resources :users
-  resources :tasks
+  resources :tasks do
+    collection do
+      get 'search'
+    end
+  end
   root 'tasks#index'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :set_q, only: [:index, :search]
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = @q.result.order(:completion_flag).order(:time_limit)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -69,7 +70,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
+
+  def set_q
+    @q = Task.ransack(params[:q])
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
