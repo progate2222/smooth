@@ -1,86 +1,96 @@
 <div class="main-content">
-
-  <h1><%= @task.title %></h1><br>
-
-    <p>
-      <strong>詳細:</strong>
-      <%= @task.description %>
-    </p>
-
-    <p>
-      <strong>期日:</strong>
-      <%= l @task.time_limit %>
-    </p>
-
-    <p>
-      <strong>重要度:</strong>
-      <% if @task.importance == "高" %>
-        <span class="font high">
-      <% elsif @task.importance == "中" %>
-        <span class="font normal">
-      <% else %>
-        <span class="font low">
-      <% end %>
-      <%= @task.importance %>
-      </span>
-    </p>
-
-    <p>
-      <strong>進捗:</strong>
-      <% if @task.completion_flag == true %>
-      <span class="font done">完了</span>
-      <% else %>
-      <span class="font Incomplete">未完了</span>
-      <% end %>
-    </p>
-
-    <p>
-      <strong>メモ:</strong>
-      <%= @task.memo %>
-    </p>
-
-    <p>
-      <strong>チーム:</strong>
-      <%= @task.team.name %>
-    </p>
-
-    <p>
-      <strong>投稿者:</strong>
-      <%= @task.user.name %>
-    </p>
-    <br><br>
-    <% if @task.requests.count > 0 %>
-      <h3>申し送り履歴</h3>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>メッセージ</th>
-            <th>前任者</th>
-            <th>後任者</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% x=1 %>
-          <% @requests.each do |request| %>
-          <tr>
-            <td><%= x %>回目</td>
-            <td><%= request.message %></td>
-            <td><%= User.find(request.user_id).name %></td>
-            <td><%= User.find(request.successor_id).name %></td>
-            <% x+=1 %>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-
   <div class="btn-cover">
-    <% if current_user.id == @task.user_id or current_user.admin == true %>
-      <%= button_to '編集', edit_task_path(@task), {method: :get, class:"btn" }%>
-      <%= button_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class:"btn" %>
-    <% end %>
-    <%= button_to "戻る", {controller: "tasks", action: "index"}, {method: :get, class:"btn" } %>
+    <div class="task-show">
+      <h1><%= @task.title %></h1><br>
+
+      <p>
+        <strong>詳細:</strong>
+        <%= @task.description %>
+      </p>
+
+      <p>
+        <strong>期日:</strong>
+        <% if (@task.completion_flag != true) && ((@task.time_limit-Time.now).to_i < 1) %>
+          <span class="urgent"><%= l @task.time_limit %></span>
+        <% else %>
+          <%= l @task.time_limit %>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>重要度:</strong>
+        <% if @task.importance == "高" %>
+          <span class="font high">
+        <% elsif @task.importance == "中" %>
+          <span class="font normal">
+        <% else %>
+          <span class="font low">
+        <% end %>
+        <%= @task.importance %>
+        </span>
+      </p>
+
+      <p>
+        <strong>進捗:</strong>
+        <% if @task.completion_flag == true %>
+        <span class="font done">完了</span>
+        <% else %>
+        <span class="font Incomplete">未完了</span>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>メモ:</strong>
+        <%= @task.memo %>
+      </p>
+
+      <p>
+        <strong>チーム:</strong>
+        <%= @task.team.name %>
+      </p>
+
+      <p>
+        <strong>投稿者:</strong>
+        <%= @task.user.name %>
+      </p>
+      <br>
+      <div class="btn-cover">
+        <% if current_user.id == @task.user_id or current_user.admin == true %>
+          <%= button_to '編集', edit_task_path(@task), {method: :get, class:"btn" }%>
+          <%= button_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class:"btn" %>
+        <% end %>
+        <%= button_to "戻る", {controller: "tasks", action: "index"}, {method: :get, class:"btn" } %>
+      </div>
+    </div>
+
+    <div>
+      <% if @task.requests.count > 0 %>
+        <h2>申し送り履歴</h2>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>メッセージ</th>
+              <th>前任者</th>
+              <th>後任者</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% x=1 %>
+            <% @requests.each do |request| %>
+            <tr>
+              <td><%= x %>回目</td>
+              <td><%= request.message %></td>
+              <td><%= User.find(request.user_id).name %></td>
+              <td><%= User.find(request.successor_id).name %></td>
+              <% x+=1 %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    <div>
+
   </div>
 </div>

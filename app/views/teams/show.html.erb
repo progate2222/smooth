@@ -39,7 +39,11 @@
     </thead>
     <tbody>
       <% @team_tasks.each do |task| %>
-        <tr>
+        <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 1) %>
+          <tr  class="urgent">
+        <% else %>
+          <tr>
+        <% end %>
             <% if task.team_id == @team.id%>
               <% if task.completion_flag == true %>
                 <td class="completion done" >完　了</td>
@@ -54,7 +58,11 @@
                   <%= task.user.name %>
                 <% end %>
               </td>
-              <td><%= l task.time_limit %></td>
+                <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 1) %>
+                  <td class="urgent"  ><span class="urgent"><%= l task.time_limit %></span></td>
+                <% else %>
+                  <td><%= l task.time_limit %></td>
+                <% end %>
               <td>
                 <% if task.importance == "高" %>
                   <span class="font high">

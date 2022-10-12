@@ -14,9 +14,7 @@
  *= require_self
  */
 
-/* .task {
-    padding-top: 30px;
-} */
+
 .btn-cover {
     display: flex;
     margin-top: 30px;
@@ -91,7 +89,7 @@
 }
 
 .btn-header {
-    position: relative;
+    /* position: relative; */
     /* display: block; */
     min-width: 120px;
     min-height: 36px;
@@ -146,7 +144,7 @@ h3 {
     width: 720px;
     margin: auto;
     text-align:center;
-    position: relative;
+    /* position: relative; */
     margin-top: 20px;
 }
 
@@ -158,16 +156,11 @@ h3 {
     margin: 0 auto;
     padding: 50px;
     width: 85%;
-    margin: auto;
-    /* text-align:center; */
-    position: relative;
-    margin-top: 20px;
 }
 
 .sub-content {
     width: 300px;
     margin: 0 auto;
-    position: relative;
 }
 
 .sub-content h3  {
@@ -175,6 +168,8 @@ h3 {
 }
 
 body {
+    padding-top: 65px;
+    /* ヘッダーの後ろに要素が隠れないようにするため */
     background-color: #eee;
 }
 
@@ -184,7 +179,7 @@ button, input, select, textarea, pre, th, td, li, dt, dd {
 
 .left {
     text-align: left;
-    position: relative;
+    /* position: relative; */
 }
 
 .right {
@@ -193,23 +188,23 @@ button, input, select, textarea, pre, th, td, li, dt, dd {
     width: 15%;
 }
 
-.center {
-    
-}
-
 header {
     width: 100%;
     height: 80px;
     background-color: #0058A0;
+    box-sizing: border-box; /* padding分を含んで幅を100%にするため */
+    position: fixed; /* ウィンドウを基準に画面に固定 */
+    top: 0; /* 上下の固定位置を上から0pxにする */
+    left: 0; /* 左右の固定位置を左から0pxにする */
     display:flex;
     justify-content: flex-end;
-    margin-bottom: 5px;
     margin-top: 0;
+    margin-bottom: 5px;
 }
 
 .logo-img {
     margin-right: auto;
-    position: relative;
+    /* position: relative; */
     height: 80px;
 }
 
@@ -247,6 +242,19 @@ td.done {
     background-color: #999999;
 }
 
+@keyframes flash {
+    0%{ background:white; }
+    100%{  background:linear-gradient(transparent 70%, rgb(254, 145, 145) 40%); }
+}
+
+span.urgent {
+    animation: flash 1.5s linear infinite;
+}
+
+tr.urgent {
+    font-weight: bold;
+}
+
 tr {
     margin: 10px;
 }
@@ -256,23 +264,30 @@ tr {
 }
 
 .done {
-    color: #fa6257;
-}
 
-.Incomplete {
     color: #999999;
 }
 
-/* .high {
-    color: #fb2727db;
-} */
+.Incomplete {
+    color: #fa6257;
+}
 
 .normal {
-    /* color: #219138; */
     opacity: 0.7;
 }
 
 .low {
-    /* color: #0058a0df; */
     opacity: 0.4;
+}
+
+.search {
+    margin-right: 30px;
+}
+
+.task-form  {
+    margin-right: 100px;
+}
+
+.task-show  {
+    margin-right: 100px;
 }
