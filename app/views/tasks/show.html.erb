@@ -55,7 +55,7 @@
       </p>
       <br>
       <div class="btn-cover">
-        <% if current_user.id == @task.user_id or current_user.admin == true %>
+        <% if ((@task.user.id == current_user.id) && (@task.requests.length == 0 ))  || (@task.requests.last&.successor_id == current_user.id)%>
           <%= button_to '編集', edit_task_path(@task), {method: :get, class:"btn" }%>
           <%= button_to '削除', @task, method: :delete, data: { confirm: '削除してもよろしいですか?' }, class:"btn" %>
         <% end %>

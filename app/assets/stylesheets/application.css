@@ -24,7 +24,7 @@
     cursor: pointer;
     border-radius: 6px;
     color: #fff !important;
-    position: relative;
+    /* position: relative; */
     background-color: #7890a4;
     border: none;
     padding: 4px 6px;
@@ -85,11 +85,10 @@
     width: 320px;
     margin-top: 40px;
     margin-bottom: 40px;
-    position: relative;
+    /* position: relative; */
 }
 
 .btn-header {
-    /* position: relative; */
     /* display: block; */
     min-width: 120px;
     min-height: 36px;
@@ -105,6 +104,7 @@
 
 .admin-btn {
     background-color: #0058A0;
+    padding: 10px;
 }
 
 .mini-btn {
@@ -239,7 +239,7 @@ td.completion {
 }
 
 td.done {
-    background-color: #999999;
+    background-color: #bbbbbb;
 }
 
 @keyframes flash {
@@ -253,6 +253,27 @@ span.urgent {
 
 tr.urgent {
     font-weight: bold;
+}
+
+td.request {
+    background-color:  rgba(255,255,255,0.1);
+}
+
+span.request {
+    position: relative;
+    padding: 0.5em;
+    background: #80cab7;
+    color: white;
+}
+
+span.request:before {
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 0;
+    border: none;
+    border-bottom: solid 7px transparent;
+    border-right: solid 20px rgb(215, 215, 215);
 }
 
 tr {
@@ -282,6 +303,7 @@ tr {
 
 .search {
     margin-right: 30px;
+    margin-bottom: 10px;
 }
 
 .task-form  {
@@ -290,6 +312,7 @@ tr {
 
 .task-show  {
     margin-right: 100px;
+    max-width: 50%;
 }
 
 .team-show  {

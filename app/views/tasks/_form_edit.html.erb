@@ -52,16 +52,18 @@
 
     <div>
       <%= form.fields_for :requests do |request| %>
-        <h2>申し送りする （<%= request.index+1 %>回目）</h2>
-        <%= request.label  :メッセージ %>
-        <%= request.text_area :message %>
-        <%= request.label :後任者 %>
-        <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
-        <%# <% form.hidden_field :user_id, :value => current_user.id %>
-        <br>
-        <br>
+        <% if request.index+1==task.requests.length %>
+          <h2>申し送り事項 （<%= request.index+1 %>回目）</h2>
+          <%= request.label  :メッセージ %>
+          <%= request.text_area :message %>
+          <%= request.hidden_field(:user_id, :value => current_user.id ) %>
+          <%= request.label :後任者 %>
+          <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
+          <br>
+          <br>
+        <% end %>
       <% end %>
-      <br><br><br><br><br><br><br><br><br><br><br><br>
+
       <div class="actions">
         <%= form.submit %>
       </div>
