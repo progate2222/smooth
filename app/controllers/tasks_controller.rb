@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = @q.result.order(:completion_flag).order(:time_limit)
+    @time = Time.now()
   end
 
   # GET /tasks/1 or /tasks/1.json

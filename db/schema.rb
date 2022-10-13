@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_06_065909) do
+ActiveRecord::Schema.define(version: 2022_10_13_030229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2022_10_06_065909) do
     t.text "description"
     t.datetime "time_limit"
     t.integer "importance"
-    t.boolean "completion_flag"
+    t.boolean "completion_flag", default: false
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
