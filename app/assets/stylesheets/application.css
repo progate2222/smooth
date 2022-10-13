@@ -294,11 +294,11 @@ tr {
 }
 
 .normal {
-    opacity: 0.7;
+    color: dimgray;
 }
 
 .low {
-    opacity: 0.4;
+    color: #bbbbbb;
 }
 
 .search {

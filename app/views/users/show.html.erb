@@ -28,8 +28,6 @@
     </div>
 
         <div>
-        <% if @user.tasks.length==0%>
-        <% else %>
             <table>
                 <thead>
                     <h3><%= @user.name %>のタスク一覧</h3>
@@ -92,7 +90,6 @@
                     <% end %>
                 </tbody>
             </table>
-        <% end %>
         </div>
     </div>
 

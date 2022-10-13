@@ -40,6 +40,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        if @task.requests.length > 0
+          RequestMailer.request_mail(@task).deliver
+        end
         format.html { redirect_to task_url(@task), notice: "タスクを登録しました。" }
         format.json { render :show, status: :created, location: @task }
       else
@@ -53,10 +56,15 @@ class TasksController < ApplicationController
   def update
     @teams = Team.all
     @users = User.all
-    @task.requests.last.user_id = current_user.id if @task.requests.present?
+    # @task.requests.last.user_id = current_user.id if @task.requests.present? これがあると既存のリクエストの依頼者が書き変わってしまう
+    @before_requests = @task.requests.length
 
       respond_to do |format|
       if @task.update(task_params)
+        @after_requests = @task.requests.length
+        if @after_requests > @before_requests
+          RequestMailer.request_mail(@task).deliver
+        end
         format.html { redirect_to task_url(@task), notice: "タスクを編集しました。" }
         format.json { render :show, status: :ok, location: @task }
       else
@@ -71,7 +79,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      format.html { redirect_to tasks_url, notice: "タスクを削除しました。" }
       format.json { head :no_content }
     end
   end
