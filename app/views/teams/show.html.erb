@@ -1,91 +1,81 @@
 <div class="main-content">
 
   <h1><%= @team.name %> 詳細</h1>
-  <%# <% if @team_member.present? %>
-    <%# <%= button_to 'チームから外れる', team_member_path(id: @team_member.id), method: :delete, class: 'btn sign-btn out' %>
-  <%# <% else %>
-    <%# <%= button_to 'チームに加わる', team_members_path(team_id: @team.id), method: :post, class: 'btn sign-btn in' %>
-  <%# <% end %>
 
-  <table>
-    <thead>
-      <tr>
-        <th><h3>メンバー</h3></th>
-      </tr>
-    </thead>
-    <tbody>
-        <% @team_members.each do |member| %>
-          <tr>
-            <td><%= member.name %></td>
-            <% if (current_user.admin == true) || (member.id == current_user.id) %>
-              <td><%= button_to '詳細', user_path(member.id),method: :get, class: "btn mini-btn" %></td>
-            <% end %>
-          </tr>
-        <% end %>
-    </tbody>
-  </table>
-
-  <table>
-    <thead>
-        <h3>チームのタスク一覧</h3>
-      <tr>
-        <th></th>
-        <th>タイトル</th>
-        <th>担当者</th>
-        <th>期日</th>
-        <th>重要度</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @team_tasks.each do |task| %>
-        <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 1) %>
-          <tr  class="urgent">
-        <% else %>
-          <tr>
-        <% end %>
-            <% if task.team_id == @team.id%>
-              <% if task.completion_flag == true %>
-                <td class="completion done" >完　了</td>
-              <% else %>
-                <td class="completion">未完了</td>
-              <% end %>
-              <td><%= task.title %></td>
-              <td>
-                <% if task.requests.length >0 %>
-                  <%=User.find(task.requests.last.successor_id).name %>
-                <% else %>
-                  <%= task.user.name %>
-                <% end %>
-              </td>
-                <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 1) %>
-                  <td class="urgent"  ><span class="urgent"><%= l task.time_limit %></span></td>
-                <% else %>
-                  <td><%= l task.time_limit %></td>
-                <% end %>
-              <td>
-                <% if task.importance == "高" %>
-                  <span class="font high">
-                <% elsif task.importance == "中" %>
-                  <span class="font normal">
-                <% else %>
-                  <span class="font low">
-                <% end %>
-                <%= task.importance %>
-                </span>
-              </td>
-              <td><%= button_to '詳細', task_path(id: task.id),method: :get, class: "btn mini-btn"  %></td>
-            <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-
-  <br><br>
   <div class="btn-cover">
-    <%# <%= button_to 'チームの編集', edit_team_path(@team), {method: :get, class:"btn" } %>
-    <%# <%= button_to "チーム一覧", {controller: "teams", action: "index"}, {method: :get, class:"btn" } %>
+    <div class="user-show">
+    <table>
+      <thead>
+        <h3>メンバー</h3>
+      </thead>
+      <tbody>
+          <% @team_members.each do |member| %>
+            <tr>
+              <td><%= member.name %></td>
+              <% if (current_user.admin == true) || (member.id == current_user.id) %>
+                <td><%= button_to '詳細', user_path(member.id),method: :get, class: "btn mini-btn" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+            <h3>チームのタスク一覧</h3>
+            <th></th>
+            <th>タイトル</th>
+            <th>担当者</th>
+            <th>期日</th>
+            <th>重要度</th>
+            <th colspan="3"></th>
+        </thead>
+        <tbody>
+          <% @team_tasks.each do |task| %>
+            <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 1) %>
+              <tr  class="urgent">
+            <% else %>
+              <tr>
+            <% end %>
+                <% if task.team_id == @team.id%>
+                  <% if task.completion_flag == true %>
+                    <td class="completion done" >完　了</td>
+                  <% else %>
+                    <td class="completion">未完了</td>
+                  <% end %>
+                  <td><%= task.title %></td>
+                  <td>
+                    <% if task.requests.length >0 %>
+                      <%=User.find(task.requests.last.successor_id).name %>
+                    <% else %>
+                      <%= task.user.name %>
+                    <% end %>
+                  </td>
+                    <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 1) %>
+                      <td class="urgent"  ><span class="urgent"><%= l task.time_limit %></span></td>
+                    <% else %>
+                      <td><%= l task.time_limit %></td>
+                    <% end %>
+                  <td>
+                    <% if task.importance == "高" %>
+                      <span class="font high">
+                    <% elsif task.importance == "中" %>
+                      <span class="font normal">
+                    <% else %>
+                      <span class="font low">
+                    <% end %>
+                    <%= task.importance %>
+                    </span>
+                  </td>
+                  <td><%= button_to '詳細', task_path(id: task.id),method: :get, class: "btn mini-btn"  %></td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

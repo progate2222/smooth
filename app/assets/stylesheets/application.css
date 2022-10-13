@@ -104,7 +104,7 @@
 }
 
 .admin-btn {
-    background-color: #f85050;
+    background-color: #0058A0;
 }
 
 .mini-btn {
@@ -289,5 +289,13 @@ tr {
 }
 
 .task-show  {
+    margin-right: 100px;
+}
+
+.team-show  {
+    margin-right: 100px;
+}
+
+.user-show  {
     margin-right: 100px;
 }

@@ -31,12 +31,12 @@
 
     <div class="field">
       <%= form.label :重要度 %>
-      <%= form.select :importance, Task.importances.keys, include_blank: "選択して下さい"  %>
+      <%= form.select :importance, Task.importances.keys %>
     </div>
 
       <div class="field">
         <%= form.label :チーム %>
-        <%= form.collection_select(:team_id, @teams, :id, :name)  %>
+        <%= form.collection_select(:team_id, @teams, :id, :name, include_blank: "選択して下さい" )  %>
       </div>
 
       <div class="field">
