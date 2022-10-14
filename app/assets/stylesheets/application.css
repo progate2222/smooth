@@ -14,17 +14,16 @@
  *= require_self
  */
 
+/* -----------ボタン関連----------------- */
 
 .btn-cover {
     display: flex;
-    margin-top: 30px;
 }
 
 .btn {
     cursor: pointer;
     border-radius: 6px;
     color: #fff !important;
-    /* position: relative; */
     background-color: #7890a4;
     border: none;
     padding: 4px 6px;
@@ -85,17 +84,15 @@
     width: 320px;
     margin-top: 40px;
     margin-bottom: 40px;
-    /* position: relative; */
 }
 
 .btn-header {
-    /* display: block; */
     min-width: 120px;
     min-height: 36px;
     line-height: 36px;
     margin-top: 22px;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 14px;
     background: rgba(255,255,255,0.1);
     margin-left: 10px;
     color: #fff;
@@ -103,19 +100,23 @@
 }
 
 .admin-btn {
-    background-color: #0058A0;
-    padding: 10px;
+    background-color: #0D6EFD;
+    padding: 20px;
+    margin-left: 45px;
+    margin-top: 20px;
 }
 
 .mini-btn {
     display: inline-block;
-    padding: 8px 12px;
+    padding: 7px 12px;
     text-decoration: none;
-    background: rgb(255, 214, 91);
+    background: rgb(255, 195, 91);
     color: #fff;
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 11px;
 }
+
+/* ------------------ログインの入力フォーム------------------ */
 
 .form {
     padding: 0 10px;
@@ -144,9 +145,10 @@ h3 {
     width: 720px;
     margin: auto;
     text-align:center;
-    /* position: relative; */
     margin-top: 20px;
 }
+
+/* ----------------共通----------------- */
 
 .main-content {
     background-color: rgba(255,255,255,0.5);
@@ -168,9 +170,13 @@ h3 {
 }
 
 body {
-    padding-top: 65px;
+    padding-top: 85px;
     /* ヘッダーの後ろに要素が隠れないようにするため */
     background-color: #eee;
+    margin: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 button, input, select, textarea, pre, th, td, li, dt, dd {
@@ -179,7 +185,12 @@ button, input, select, textarea, pre, th, td, li, dt, dd {
 
 .left {
     text-align: left;
-    /* position: relative; */
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .right {
@@ -187,6 +198,8 @@ button, input, select, textarea, pre, th, td, li, dt, dd {
     margin-left: auto;
     width: 15%;
 }
+
+/* ------------------ヘッダー,フッター---------------- */
 
 header {
     width: 100%;
@@ -204,9 +217,25 @@ header {
 
 .logo-img {
     margin-right: auto;
-    /* position: relative; */
     height: 80px;
 }
+
+footer{
+    width: 100%;
+    height: 50px;
+    background-color: #b3b3b3;
+    color: white;
+    text-align: center;
+    margin-top:50px;
+    padding:0;
+    bottom: 0; /* 上下の固定位置を↓から0pxにする */
+    left: 0; /* 左右の固定位置を左から0pxにする */
+}
+
+.footer-logo {
+    padding-top:16px ;
+}
+/* -------------テーブルの装飾------------------ */
 
 table {
     border-collapse: separate;
@@ -219,12 +248,12 @@ table, th, td {
 
 th {
     margin-top: 25px;
+    text-align: center;
 }
 
 td {
     background-color: #fff;
     padding: 10px;
-    border-radius: 5px;
     border: 10px;
 }
 
@@ -233,9 +262,9 @@ td.completion {
     color: #fff;
     border-radius: 50%;
     font-size: 10px;
-    margin: 5px;
-    width: 30px;
-    height: 30px;
+    margin: 0px;
+    width: 7vmin;
+    height: 7vmin;
 }
 
 td.done {
@@ -276,19 +305,29 @@ span.request:before {
     border-right: solid 20px rgb(215, 215, 215);
 }
 
+td.index-title {
+    max-width: 35%;
+}
+
+td.request-msg {
+    max-width: 400px;
+}
+
 tr {
     margin: 10px;
+    height: 40px;
 }
 
 .font {
     font-weight: bold;
 }
 
+/* task-showの完了の文字色 */
 .done {
-
     color: #999999;
 }
 
+/* 未完了 */
 .Incomplete {
     color: #fa6257;
 }
@@ -300,6 +339,8 @@ tr {
 .low {
     color: #bbbbbb;
 }
+
+/* ----------------index,showページの装飾---------------- */
 
 .search {
     margin-right: 30px;
@@ -322,3 +363,88 @@ tr {
 .user-show  {
     margin-right: 100px;
 }
+
+.request-show {
+    max-width: 400px;
+    margin-right: 200px;
+}
+
+/* -------------トップページの装飾------------------- */
+
+.top-content {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 6px 0px rgb(6 0 1 / 5%);
+    box-shadow: 0px 0px 6px 0px rgb(6 0 1 / 5%);
+    margin: 0 auto;
+    padding: 50px;
+    width: 1000px;
+    margin: auto;
+    text-align:center;
+    margin-top: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+.app-name {
+    color: #fff;
+    -webkit-text-stroke: 2px #0058A0;
+    font-size: 40px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-style: italic;
+}
+
+.top-h {
+    background:linear-gradient(transparent 60%, #ff6 60%);
+}
+
+.top-img {
+    width: 220px;
+}
+
+.inner {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 80%;
+}
+
+.inner-2 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.left-2 {
+    text-align: left;
+    max-width: 70%;
+}
+
+.right-2 {
+    text-align: left;
+    margin-left: auto;
+    max-width: 80%;
+}
+
+/* ---------------ページネーション------------------------- */
+/*ページネーション自体のデザイン*/
+.pagination>li>a {
+    border: none;     /*枠線をなくす*/
+    color: #696969;   /*文字の色を変える*/
+}
+
+  /* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+    background: #93c9ff;     /*背景の色を変える*/
+    border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+    border-radius: 15px;    /*角を丸くする*/
+}
+

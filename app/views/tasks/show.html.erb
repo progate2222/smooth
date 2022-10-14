@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="request-show">
       <% if @task.requests.count > 0 %>
         <h2>申し送り履歴</h2>
         <table>
@@ -81,7 +81,7 @@
             <% @requests.each do |request| %>
             <tr>
               <td><%= x %>回目</td>
-              <td><%= request.message %></td>
+              <td class="request-msg"><%= request.message %></td>
               <td><%= User.find(request.user_id).name %></td>
               <td><%= User.find(request.successor_id).name %></td>
               <% x+=1 %>
@@ -89,8 +89,9 @@
             <% end %>
           </tbody>
         </table>
+        <%= paginate @requests %>
       <% end %>
-    <div>
+    </div>
 
   </div>
 </div>

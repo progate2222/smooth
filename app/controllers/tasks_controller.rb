@@ -5,13 +5,13 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = @q.result.order(:completion_flag).order(:time_limit)
+    @tasks = @q.result.order(:completion_flag).order(:time_limit).page(params[:page]).per(10)
     @time = Time.now()
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
-    @requests = @task.requests
+    @requests = @task.requests.page(params[:page]).per(5)
   end
 
   # GET /tasks/new

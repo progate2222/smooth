@@ -19,6 +19,7 @@
           <% end %>
       </tbody>
     </table>
+    <%= paginate @team_members %>
     </div>
 
     <div>
@@ -34,7 +35,7 @@
         </thead>
         <tbody>
           <% @team_tasks.each do |task| %>
-                <% if task.team_id == @team.id%>
+                <% if task.team_id == @team.id %>
                   <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 87000) %>
                     <tr  class="urgent">
                   <% else %>
@@ -75,6 +76,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @team_tasks %>
     </div>
   </div>
 </div>

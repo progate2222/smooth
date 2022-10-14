@@ -1,7 +1,16 @@
 <div class="main-content">
-
-    <h1><%= @user.name %>のページ</h1>
-    <p>メールアドレス : <%= @user.email %></p>
+    <div class="btn-cover">
+        <div>
+            <h1><%= @user.name %>のページ</h1>
+            <p>メールアドレス : <%= @user.email %></p>
+        </div>
+        <div>
+            <%if @user.admin == true%>
+                <%= button_to '管理者ページへ行く', rails_admin_path, method: :get, class: "btn admin-btn" %>
+            <% end %>
+        </div>
+    </div>
+    <br>
 
     <div class="btn-cover">
         <div class="team-show">
@@ -18,13 +27,7 @@
                 <% end %>
             </tbody>
         </table>
-        <%if @user.admin == true%>
-            <div class="btn-cover">
-                <%= button_to '管理者ページへ行く', rails_admin_path, method: :get, class: "btn admin-btn" %>
-                <%# <%= button_to "ユーザー新規登録", , {method: :get, class:"btn admin-btn"} %>
-                <%# <%= button_to "チーム新規登録", {controller: "teams", action: "new"}, {method: :get, class:"btn admin-btn " } %>
-            </div>
-        <% end %>
+        <%= paginate @teams %>
     </div>
 
         <div>
@@ -43,8 +46,8 @@
                 </thead>
 
                 <tbody>
-                    <% @tasks.each do |task| %>
-                        <% if ((task.user.id == @user.id) && (task.requests.length == 0 ))  || (task.requests.last&.successor_id == @user.id)%>
+                    <% @user_tasks.each do |task| %>
+                        <%# <% if ((task.user.id == @user.id) && (task.requests.length == 0 ))  || (task.requests.last&.successor_id == @user.id)%>
                             <% if (task.completion_flag != true) && ((task.time_limit-Time.now).to_i < 87000) %>
                                 <tr  class="urgent">
                             <% else %>
@@ -54,7 +57,7 @@
                             <% if task.requests.length != 0 %>
                                 <td class="request"><span class="request">申送</span></td>
                             <% else %>
-                                <td class="request"></td>
+                                <td class="request"><span>        </span></td>
                             <% end %>
                             <% if task.completion_flag == true %>
                                 <td class="completion done" >完　了</td>
@@ -87,9 +90,10 @@
                             </div>
                         </tr>
                         <% end %>
-                    <% end %>
+                    <%# <% end %>
                 </tbody>
             </table>
+            <%= paginate @user_tasks %>
         </div>
     </div>
 
