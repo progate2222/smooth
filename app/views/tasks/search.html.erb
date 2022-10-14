@@ -64,7 +64,7 @@
         <% end %>
     </tbody>
 </table>
-
+<%= paginate @results %>
 <br>
 
 <%= button_to "タスク一覧に戻る", {controller: "tasks", action: "index"}, {method: :get, class:"btn" }  %>

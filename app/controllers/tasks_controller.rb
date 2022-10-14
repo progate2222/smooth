@@ -85,7 +85,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    @results = @q.result.order(:completion_flag).order(:time_limit)
+    @results = @q.result.order(:completion_flag).order(:time_limit).page(params[:page]).per(10)
   end
 
   private
