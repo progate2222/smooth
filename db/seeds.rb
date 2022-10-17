@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |n|
+    n += 1
     User.create!(
         name: "seed_ユーザー#{n}",
         email: "seed_user#{n}@mail.com",
@@ -21,7 +22,7 @@
     Task.create!(
         title: "seed_タスク#{n}",
         description: "seed_タスク#{n}の詳細",
-        time_limit: Time.parse('2023-07-07 21:54:30'),
+        time_limit: Time.parse('2022-10-31 19:00:00'),
         importance: 'high',
         completion_flag: false,
         memo: "seed_タスク#{n}のメモ",
@@ -36,10 +37,3 @@
         user_id: 1
     )
 end
-
-User.create!(
-    name: 'seed_アドミン',
-    email: 'seed_admin@mail.com',
-    password:"seedadmin",
-    admin: true
-)
