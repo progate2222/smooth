@@ -6,17 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+5.times do |n|
+    User.create!(
+        name: "seed_ユーザー#{n}",
+        email: "seed_user#{n}@mail.com",
+        password: '111111',
+        admin: false
+    )
 
-# User.create!(
-#     name: "user1",
-#     email: "user1@mail.com",
-#     encrypted_password:"111111"
-# )
+    Team.create!(
+        name: "チーム#{n}",
+    )
 
+    Task.create!(
+        title: "seed_タスク#{n}",
+        description: "seed_タスク#{n}の詳細",
+        time_limit: Time.parse('2023-07-07 21:54:30'),
+        importance: 'high',
+        completion_flag: false,
+        memo: "seed_タスク#{n}のメモ",
+        user_id: 1,
+        team_id: 1
+    )
 
-# User.create!(
-# name: 'admin1',
-# email: 'admin1@mail.com',
-# encrypted_password:"admin1",
-# admin: true
-# )
+    Request.create!(
+        message: "申し送り#{n}",
+        successor_id: 2,
+        task_id: 3,
+        user_id: 1
+    )
+end
+
+User.create!(
+    name: 'seed_アドミン',
+    email: 'seed_admin@mail.com',
+    password:"seedadmin",
+    admin: true
+)

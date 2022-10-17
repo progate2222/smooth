@@ -10,6 +10,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('favicon.png') %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- コード追加　Bootstrap CSS読み込みコード-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- コード追加　Bootstrap JavaScript読み込みコード-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <header>
@@ -20,23 +26,29 @@
         <%= button_to "マイページ", user_path(current_user.id), {method: :get, class:"btn btn-header" } %>
         <%= button_to "ログアウト", destroy_user_session_path, {method: :delete, class:"btn btn-header" } %>
       <% else %>
-        <%# <%= button_to "新規登録", new_user_registration_path, {method: :get, class:"btn btn-header" } %>
+        <%= button_to "トップページ", new_user_registration_path, {method: :get, class:"btn btn-header" } %>
         <%= button_to "ログイン", new_user_session_path, {method: :get, class:"btn btn-header" } %>
       <% end %>
     </header>
 
   <body>
-    <% if user_signed_in? %>
-      <p class="right"><%= current_user.name %>でログインしています</p>
-    <% end %>
+    <div class="footerFixed">
+      <% if user_signed_in? %>
+        <p class="right"><%= current_user.name %>でログインしています</p>
+      <% end %>
 
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
+      <footer>
+        <p class="footer-logo">© Smooth </p>
+      </footer>
+    </div>
   </body>
+
 </html>

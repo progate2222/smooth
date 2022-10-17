@@ -9,8 +9,15 @@ class TeamsController < ApplicationController
   # GET /teams/1 or /teams/1.json
   def show
     @team_member = current_user.team_members.find_by(team_id: @team.id)
-    @team_members = @team.team_member_users
-    @team_tasks = Task.all.order(:completion_flag).order(:time_limit)
+    @team_members = @team.team_member_users.page(params[:page]).per(6)
+    tasks = Task.all.order(:completion_flag).order(:time_limit)
+    team_tasks = []
+    tasks.each do |task|
+      if task.team_id == @team.id
+        team_tasks.push(task)
+      end
+    end
+    @team_tasks = Kaminari.paginate_array(team_tasks).page(params[:page]).per(5)
   end
 
   # GET /teams/new

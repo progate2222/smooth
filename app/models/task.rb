@@ -1,5 +1,8 @@
 class Task < ApplicationRecord
-    enum importance: { "高": 1, "中": 2, "低": 3 }
+    validates :title, presence: true
+    validates :time_limit, presence: true
+    enum importance: { 高: 1, 中: 2, 低: 3 }
+
     belongs_to :user
     belongs_to :team
     has_many :requests, dependent: :destroy
