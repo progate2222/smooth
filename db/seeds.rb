@@ -33,7 +33,7 @@
     Request.create!(
         message: "申し送り#{n}",
         successor_id: 2,
-        task_id: 3,
+        task_id: 1,
         user_id: 1
     )
 end
