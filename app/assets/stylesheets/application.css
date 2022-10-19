@@ -169,12 +169,16 @@ h3 {
     text-align: left;
 }
 
+.footerFixed {
+    min-height: 75vh !important;
+}
+
 body {
     padding-top: 85px;
     /* ヘッダーの後ろに要素が隠れないようにするため */
     background-color: #eee;
     margin: 0;
-    min-height: 100%;
+    min-height: 100vh !important;
     display: flex;
     flex-direction: column;
 }
