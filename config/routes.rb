@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
 }
-  resources :users
+  resources :users, only: [:show]
   resources :tasks do
     collection do
       get 'search'

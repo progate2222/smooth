@@ -23,7 +23,7 @@
         title: "seed_タスク#{n}",
         description: "seed_タスク#{n}の詳細",
         time_limit: Time.parse('2022-10-31 19:00:00'),
-        importance: 'high',
+        importance: '高',
         completion_flag: false,
         memo: "seed_タスク#{n}のメモ",
         user_id: 1,

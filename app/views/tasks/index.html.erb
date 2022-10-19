@@ -34,6 +34,7 @@
     </thead>
 
     <tbody>
+    <% n = 0 %>
       <% @tasks.each do |task| %>
         <% if (task.completion_flag != true) && ((task.time_limit-@time).to_i < 87000) %>
           <tr  class="urgent">
@@ -46,7 +47,7 @@
             <% else %>
               <td class="completion">未完了</td>
             <% end %>
-            <td class="index-title"><%= task.title %></td>
+            <td class="index-title task_row" id="<%= "task_#{n}" %>"><%= task.title %></td>
             <td><%= task.team.name %></td>
             <td>
             <% if task.requests.length >0 %>
@@ -79,6 +80,7 @@
             <% end %>
           </div>
         </tr>
+        <% n += 1 %>
       <% end %>
     </tbody>
   </table>
