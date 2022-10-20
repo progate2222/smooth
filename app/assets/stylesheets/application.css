@@ -458,3 +458,7 @@ tr {
     border-radius: 15px;    /*角を丸くする*/
 }
 
+#error_explanation {
+    /* width:100px; */
+}
+
