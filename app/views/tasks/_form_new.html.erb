@@ -1,7 +1,7 @@
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "") %> 個のエラーが発生しています:</h2>
 
       <ul>
         <% task.errors.each do |error| %>
@@ -16,12 +16,12 @@
     <h1>タスク登録</h1>
     <div class="field">
       <%= form.label :タイトル %>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, placeholder: "タイトルを入力（※必須）" %>
     </div>
 
     <div class="field">
       <%= form.label :詳細 %>
-      <%= form.text_area :description %>
+      <%= form.text_area :description, placeholder: "詳細を入力"  %>
     </div>
 
     <div class="field">
@@ -41,7 +41,7 @@
 
       <div class="field">
         <%= form.label :メモ %>
-        <%= form.text_area :memo %>
+        <%= form.text_area :memo, placeholder: "メモを入力"  %>
       </div>
     </div>
 
@@ -49,7 +49,7 @@
       <%= form.fields_for :requests do |request| %>
         <h2>申し送りする （<%= request.index+1 %>回目）</h2>
         <%= request.label  :メッセージ %>
-        <%= request.text_area :message %>
+        <%= request.text_area :message, placeholder: "メッセージを入力" %>
         <%= request.label :後任者 %>
         <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
         <br>

@@ -4,12 +4,12 @@
   <div class="sub-content">
     <div class="field">
       <h3><%= f.label :email %></h3>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form", placeholder: "メールアドレスを入力" %>
     </div>
 
     <div class="field">
       <h3><%= f.label :password %></h3>
-      <%= f.password_field :password, autocomplete: "current-password", class: "form" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form", placeholder: "パスワードを入力" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
