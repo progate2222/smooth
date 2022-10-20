@@ -46,7 +46,7 @@
     </div>
 
     <div>
-      <%= form.fields_for :requests do |request| %>
+      <%= form.fields_for :requests,@task.requests.build do |request| %>
         <h2>申し送りする （<%= request.index+1 %>回目）</h2>
         <%= request.label  :メッセージ %>
         <%= request.text_area :message, placeholder: "メッセージを入力" %>
