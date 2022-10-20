@@ -59,7 +59,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
 
     #     context '管理ユーザは' do
     #         it 'ユーザーを新規作製できる(Create)' do
-    #             click_on(all(".nav-link")[5])
+    #             click_on(all(".nav-link")[4])
     #             click_on('新規登録')
     #             fill_in "user_email", with: 'test@mail.com'
     #             fill_in "user_password", with: '111111'
