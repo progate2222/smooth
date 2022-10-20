@@ -68,6 +68,7 @@ class TasksController < ApplicationController
         format.html { redirect_to task_url(@task), notice: "タスクを編集しました。" }
         format.json { render :show, status: :ok, location: @task }
       else
+        @task.requests.build
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
