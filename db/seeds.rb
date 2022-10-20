@@ -81,7 +81,7 @@ teams = Team.create!([
             completion_flag: true,
             memo: "予算は3000円",
             user: users[4],
-            team:teams[1] },
+            team:teams[3] },
         { title: "加湿器の準備",
             description: "備品室の加湿器を出す",
             time_limit: Time.parse('2022-11-10 19:00:00'),
@@ -89,7 +89,7 @@ teams = Team.create!([
             completion_flag: false,
             memo: "5台あり。",
             user: users[4],
-            team:teams[1] }
+            team:teams[3] }
     ])
 
     Request.create!([
