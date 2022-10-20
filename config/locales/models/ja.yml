@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      task: タスク
     attributes:
       task:
         title: タイトル
