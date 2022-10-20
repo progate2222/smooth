@@ -5,7 +5,7 @@
     <div class="search">
       <%= search_form_for @q, url: search_tasks_path do |f| %>
         <%= f.label :title_cont, '▽タスク名で検索' %>
-        <%= f.search_field :title_cont %>
+        <%= f.search_field :title_cont, placeholder: "検索…" %>
         <%= f.submit '検索' %>
       <% end %>
     </div>

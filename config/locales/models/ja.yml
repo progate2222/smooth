@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      task:
+        title: タイトル
+        time_limit: 期日
+        team: チーム
