@@ -17,7 +17,7 @@ let!(:task) { FactoryBot.create(:task, user: user, team: team) }
                 visit new_task_path
                 fill_in "task_title", with: 'タスク'
                 fill_in "task_description", with: 'タスクの詳細'
-                fill_in "task_time_limit", with: '002022-10-31T19:00:00'
+                fill_in "task_time_limit", with: '002030-10-31T19:00:00'
                 select 'Factoryで作ったチーム1', from: 'task_team_id'
                 click_on('登録する')
                 expect(page).to have_content '投稿者: user_general'
@@ -61,7 +61,7 @@ let!(:task) { FactoryBot.create(:task, user: user, team: team) }
                 visit new_task_path
                 fill_in "task_title", with: 'タスク'
                 fill_in "task_description", with: 'タスクの詳細'
-                fill_in "task_time_limit", with: '002022-10-31T19:00:00'
+                fill_in "task_time_limit", with: '002030-10-31T19:00:00'
                 select 'Factoryで作ったチーム1', from: 'task_team_id'
                 fill_in "task_requests_attributes_0_message", with: '申し送りメッセージ'
                 select 'user_admin', from: 'task_requests_attributes_0_successor_id'

@@ -15,17 +15,17 @@
   <div class="task-form">
     <h1>タスク登録</h1>
     <div class="field">
-      <%= form.label :タイトル %>
-      <%= form.text_field :title, placeholder: "タイトルを入力（※必須）" %>
+      <%= form.label :タイトル（※必須） %>
+      <%= form.text_field :title, placeholder: "タイトルを入力（30文字以内）" %>
     </div>
 
     <div class="field">
       <%= form.label :詳細 %>
-      <%= form.text_area :description, placeholder: "詳細を入力"  %>
+      <%= form.text_area :description, placeholder: "詳細を入力（300文字以内）"  %>
     </div>
 
     <div class="field">
-      <%= form.label :期日 %>
+      <%= form.label :期日（※必須） %>
       <%= form.datetime_field :time_limit  %>
     </div>
 
@@ -35,13 +35,13 @@
     </div>
 
       <div class="field">
-        <%= form.label :チーム %>
+        <%= form.label :チーム（※必須） %>
         <%= form.collection_select(:team_id, @teams, :id, :name, include_blank: "選択して下さい" )  %>
       </div>
 
       <div class="field">
         <%= form.label :メモ %>
-        <%= form.text_area :memo, placeholder: "メモを入力"  %>
+        <%= form.text_area :memo, placeholder: "メモを入力（200文字以内）"  %>
       </div>
     </div>
 
@@ -49,8 +49,8 @@
       <%= form.fields_for :requests,@task.requests.build do |request| %>
         <h2>申し送りする （<%= request.index+1 %>回目）</h2>
         <%= request.label  :メッセージ %>
-        <%= request.text_area :message, placeholder: "メッセージを入力" %>
-        <%= request.label :後任者 %>
+        <%= request.text_area :message, placeholder: "メッセージを入力（200文字以内）" %>
+        <%= request.label :後任者（※必須） %>
         <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
         <br>
         <br>

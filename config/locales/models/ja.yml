@@ -2,8 +2,15 @@ ja:
   activerecord:
     models:
       task: タスク
+      task/request: 申し送り
     attributes:
       task:
         title: タイトル
         time_limit: 期日
         team: チーム
+        description: 詳細
+        memo: メモ
+      task/requests:
+        message: メッセージ
+      request:
+        message: メッセージ
