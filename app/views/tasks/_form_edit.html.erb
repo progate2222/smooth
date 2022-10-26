@@ -16,12 +16,12 @@
     <h1>タスク編集  </h1>
     <div class="field">
       <%= form.label :タイトル %>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, placeholder: "タイトルを入力（30文字以内）"  %>
     </div>
 
     <div class="field">
       <%= form.label :詳細 %>
-      <%= form.text_area :description %>
+      <%= form.text_area :description, placeholder: "詳細を入力（300文字以内）"  %>
     </div>
 
     <div class="field">
@@ -41,7 +41,7 @@
 
       <div class="field">
         <%= form.label :メモ %>
-        <%= form.text_area :memo %>
+        <%= form.text_area :memo, placeholder: "メモを入力（200文字以内）"  %>
       </div>
 
       <div class="field">
@@ -55,7 +55,7 @@
         <% if request.index+1==task.requests.length %>
           <h2>申し送り事項 （<%= request.index+1 %>回目）</h2>
           <%= request.label  :メッセージ %>
-          <%= request.text_area :message %>
+          <%= request.text_area :message, placeholder: "メッセージを入力（200文字以内）" %>
           <%= request.hidden_field(:user_id, :value => current_user.id ) %>
           <%= request.label :後任者 %>
           <%= request.collection_select(:successor_id, @users, :id, :name, include_blank: "選択して下さい" ) %>
